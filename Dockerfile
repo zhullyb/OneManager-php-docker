@@ -1,4 +1,4 @@
-FROM php:latest
+FROM php:8-apache
 EXPOSE 8000
-COPY OneManager-php /root
-CMD ["php", "-S", "0.0.0.0:8000", "/root/index.php"]
+RUN a2enmod rewrite
+COPY OneManager-php /var/www/html
