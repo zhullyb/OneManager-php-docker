@@ -9,7 +9,6 @@ docker run -d \
 	--name onemanager \
 	-p 80:80 \
 	--restart unless-stopped \
-	-v ~/.onemanager_data/:/var/www/html/.data \
 	zhullyb/onemanager-php:latest
 ```
 
