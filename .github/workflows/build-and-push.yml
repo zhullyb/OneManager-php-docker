@@ -18,6 +18,14 @@ jobs:
           repository: qkqpttgf/OneManager-php
           path: OneManager-php
 
+      - name: Get current date
+        id: date
+        run: echo "::set-output name=date::$(date +%Y%m%d)"
+
+      - name: htaccess fix
+        run: |
+          sed -i '6s/.*/RewriteRule ^(.*) index.php [QSA,L]/' OneManager-php/.htaccess
+
       - name: Set up QEMU
         uses: docker/setup-qemu-action@v2
 
@@ -39,5 +47,6 @@ jobs:
           push: true
           tags: |
             zhullyb/onemanager-php:latest
+            zhullyb/onemanager-php:${{ steps.date.outputs.date }}
           cache-from: type=registry,ref=zhullyb/onemanager-php:latest
           cache-to: type=inline,dest=zhullyb/onemanager-php:latest
