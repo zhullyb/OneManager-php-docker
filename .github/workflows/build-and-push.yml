@@ -22,10 +22,6 @@ jobs:
         id: date
         run: echo "::set-output name=date::$(date +%Y%m%d)"
 
-      - name: htaccess fix
-        run: |
-          sed -i '6s/.*/RewriteRule ^(.*) index.php [QSA,L]/' OneManager-php/.htaccess
-
       - name: Set up QEMU
         uses: docker/setup-qemu-action@v2
 
